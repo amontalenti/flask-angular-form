@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="billing">
+    <head>
+        <link href="{{ url_for('static', filename='css/minimal-ui.css') }}" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet" />
+        <style type="text/css">
+            .cc-cell {
+                float: left;
+            }
+            .cc-cell-last {
+                clear: both;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="current-cc" class="container" ng-controller="currentCardCtrl">
+            <h3 class="cl-blue">Current Credit Card Details</h2>
+            <div class="cc-cell column2">
+                <h3 class="cc-header">Type</h2>
+                <div class="cc-value">Mastercard</div>
+            </div>
+            <div class="cc-cell column3">
+                <h3 class="cc-header">Number</h2>
+                <div class="cc-value">**** **** **** 1234</div>
+            </div>
+            <div class="cc-cell column2">
+                <h3 class="cc-header">Exp Date</h2>
+                <div class="cc-value">01/02/2014</div>
+            </div>
+            <div class="cc-cell column3">
+                <h3 class="cc-header">Cardholder Name</h2>
+                <div class="cc-value">Lane Kim</div>
+            </div>
+            <div class="cc-cell column2 cc-cell-last">
+                <input type="submit" class="cc-change" ng-click="changeCreditCard(change)" value="Change" />
+            </div>
+            <p>
+                <div class="cc-status">
+                    <p ng-show="change" class="cl-red">changing!</p>
+                </div>
+            </p>
+
+<p style="clear: both"></p>
+
+<!-- [debug] -->
+<pre>
+'change' in scope:
+[[ change | json ]]
+</pre>
+<!-- [/debug] -->
+        </div>
+
+        <div id="cc-new" class="container">
+            <h3 class="cl-blue">Change Credit Card Details</h2>
+            <form novalidate class="billing-form" name="frm" ng-controller="billingFrmCtrl">
+                <p class="container">
+                    <label class="column6" for="cc-name">Cardholder Name</label>
+                    <input class="column6" type="cc-name" value="" name="cc-name" ng-model="cc.name" required />
+                </p>
+                <p class="container">
+                    <label class="column6" for="cc-number">Card Number</label>
+                    <input class="column6" type="cc-number" value="" name="cc-number" ng-model="cc.number" required />
+                </p>
+                <p class="container">
+                    <label class="column6" for="cc-expires">Expires</label>
+                    <input class="column6" type="cc-expires" value="" name="cc-expires" ng-model="cc.expires" required />
+                </p>
+                <p class="container">
+                    <label class="column6" for="cc-cvv">Security Code (CVV)</label>
+                    <input class="column6" type="cc-cvv" value="" name="cc-cvv" ng-model="cc.cvv" required />
+                </p>
+                <p class="container">
+                    <label class="column6" for="cc-postalcode">Postal Code</label>
+                    <input class="column6" type="cc-postalcode" value="" name="cc-postalcode" ng-model="cc.postalcode" required />
+                </p>
+                <p class="container">
+                    <input class="prefix4 column2"
+                        type="submit"
+                        name="cc-save"
+                        value="Save"
+                        ng-click="saveCreditCard(cc)" />
+                </p>
+
+<!-- [debug] -->
+<pre>
+'cc' in scope:
+[[ cc | json ]]
+</pre>
+
+<pre>
+'actions' in scope:
+[[ actions | json ]]
+</pre>
+
+<pre>
+'frm' in scope:
+[[ frm | json ]]
+</pre>
+
+<!-- [/debug] -->
+
+            </form>
+
+    <script src="{{ url_for('static', filename='js/angular.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
